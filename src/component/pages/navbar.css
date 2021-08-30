@@ -1,0 +1,33 @@
+.flex {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+  background-color: #00ffff;
+}
+.pd-20 {
+  padding: 20px;
+}
+
+.nav-item {
+  padding: 10px;
+  cursor: pointer;
+}
+.nav-item:active {
+  background-color: rgb(255, 80, 36);
+  color: whitesmoke;
+}
+
+.nav-item:hover {
+  background-color: rgb(255, 80, 36);
+  color: whitesmoke;
+}
+
+.activeColor {
+  background-color: rgb(255, 80, 36);
+  color: "white";
+}
+
+.deactiveColor {
+  background-color: rgb(47, 79, 79);
+  color: "white";
+}
