@@ -19,11 +19,10 @@ function App() {
         <Navbar />      
        <Switch>
         <Route exact path="/home" component={Home} />
-        <Route  path="/aboutus" component={AboutUs} />
-        {getToken ?
-        <Route  path="/contact" component={Contact} />:<Login/>}
+        <Route  path="/aboutus" component={AboutUs} />        
+        <Route  path="/contact" component={Contact} />
         <Route  path="/login" component={Login} />
-        <Route  path="/signup" component={Signup} />
+        <Route  path="/signup" component={Signup} />        
         </Switch>
       </BrowserRouter>
     

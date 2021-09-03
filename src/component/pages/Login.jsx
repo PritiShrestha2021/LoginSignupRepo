@@ -24,6 +24,7 @@ const [message,setMessage] = useState({});
        setMessage(postData.data);
         const Token = postData.data.token;
        localStorage.setItem("token",Token);
+       window.location.replace('/home');
 
     };
 console.log(message.msg);
