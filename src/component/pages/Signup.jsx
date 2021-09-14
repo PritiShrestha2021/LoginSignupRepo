@@ -1,94 +1,109 @@
-import axios from 'axios';
-import React, { useState} from 'react';
+import axios from "axios";
+import React, { useState } from "react";
 
+function Signup(props) {
+  console.log("inside sigup page");
+  const [SignupData, setSignupData] = useState({
+    name: props.item ? props.item.name : "",
+    address: props.item ? props.item.address : "",
+    phoneno: props.item ? props.item.phoneno : "",
+    username: props.item ? props.item.username : "",
+    password: props.item ? props.item.password : "",
+  });
 
-function Signup() {   
-const [SignupData,setSignupData] = useState({
-    name:"",
-    address:"",
-    phoneNumber:"",
-    userName :"",
-    password:""
-})
+  const [message, setMessage] = useState({});
 
-const [message,setMessage] = useState({});
-
-const handleSignup = async(e) =>{
+  const handleSignup = async (e) => {
     e.preventDefault();
     console.log(SignupData);
-    const postData = await axios.post('http://localhost:3001/signup/create', SignupData);
-  //  console.log(postData.data);
+    const postData = await axios.post(
+      "http://localhost:3001/signup/create",
+      SignupData
+    );
+    //  console.log(postData.data);
     setMessage(postData.data);
+    console.log(postData, "data");
+  };
 
-}
+  const onChangeHandler = async (e) => {
+    setSignupData({ ...SignupData, [e.target.name]: e.target.value });
+  };
 
-const onChangeHandler = async(e) => {
-    setSignupData({...SignupData,[e.target.name]:e.target.value })
-}
+  const onChangeImageHandler = async (e) => {
+    console.log(e.target.files);
+  };
 
-return (
+  return (
     <div>
-        <h1>Signup Page !!!</h1>
-        <form />
-        <div>
-           <label>Name: </label>
-       <input
-        type="text"
-        name="name"
-        onChange={(e)=> onChangeHandler(e)}
-        value={SignupData.name}
-        placeholder="Enter name"
-      />           
-       </div> 
-       <div>
-           <label>Address: </label>
-       <input
-        type="text"
-        name="address"
-        onChange={(e)=> onChangeHandler(e)}
-        value={SignupData.address}
-        placeholder="Enter address"
-      />           
-       </div> 
-       <div>
-           <label>PhoneNumber: </label>
-       <input
-        type="text"
-        name="phoneNumber"
-        onChange={(e)=> onChangeHandler(e)}
-        value={SignupData.phoneNumber}
-        placeholder="Enter phonenumber"
-      />           
-       </div> 
+      <h1>Signup Page !!!</h1>
+      <form />
+      <div>
+        <label>Insert Image:</label>
+        <input
+          type="file"
+          name="file"
+          onChange={(e) => onChangeImageHandler(e)}
+        ></input>
+      </div>
+      <div>
+        <label>Name: </label>
+        <input
+          type="text"
+          name="name"
+          onChange={(e) => onChangeHandler(e)}
+          value={SignupData.name}
+          placeholder="Enter name"
+        />
+      </div>
+      <div>
+        <label>Address: </label>
+        <input
+          type="text"
+          name="address"
+          onChange={(e) => onChangeHandler(e)}
+          value={SignupData.address}
+          placeholder="Enter address"
+        />
+      </div>
+      <div>
+        <label>PhoneNumber: </label>
+        <input
+          type="text"
+          name="phoneno"
+          onChange={(e) => onChangeHandler(e)}
+          value={SignupData.phoneno}
+          placeholder="Enter phonenumber"
+        />
+      </div>
+      <div>
+        <label>Username: </label>
+        <input
+          type="text"
+          name="username"
+          onChange={(e) => onChangeHandler(e)}
+          value={SignupData.username}
+          placeholder="Enter username"
+        />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input
+          type="text"
+          name="password"
+          onChange={(e) => onChangeHandler(e)}
+          value={SignupData.password}
+          placeholder="Enter password"
+        />
+      </div>
 
-
-       <div>
-           <label>Username: </label>
-       <input
-        type="text"
-        name="userName"
-        onChange={(e)=> onChangeHandler(e)}
-        value={SignupData.userName}
-        placeholder="Enter username"
-      />           
-       </div> 
-       <div><label>Password:</label> 
-       <input
-        type="text"
-        name="password"
-        onChange={(e)=> onChangeHandler(e)}
-        value={SignupData.password}
-        placeholder="Enter password"
-      />           
-       </div> 
-       <button type="button" onClick={(e) => handleSignup(e)}>
-            Signup
+      {!props.item && (
+        <button type="button" onClick={(e) => handleSignup(e)}>
+          Signup
         </button>
-        {
-            message.msg
-        }
+      )}
+      {message.msg}
     </div>
-)
+  );
 }
 
-export default Signup
+export default Signup;

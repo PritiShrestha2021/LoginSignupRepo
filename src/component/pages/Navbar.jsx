@@ -18,9 +18,12 @@ function Navbar() {
         console.log("inside logout");
        // localStorage.clear(); //removes all localstorage
        localStorage.removeItem('token');
-       window.location.replace('/login');
-      
-     // return <Redirect to="/home"/>
+       history.push('/login');
+       window.location.reload();
+      // window.location.replace('/login');
+     // window.location.href = '/login';
+
+    //   return <Redirect to="/login"/>
 
     }
 

@@ -18,11 +18,13 @@ function App() {
       <BrowserRouter>
         <Navbar />      
        <Switch>
-        <Route exact path="/home" component={Home} />
-        <Route  path="/aboutus" component={AboutUs} />        
-        <Route  path="/contact" component={Contact} />
-        <Route  path="/login" component={Login} />
-        <Route  path="/signup" component={Signup} />        
+       <Route  path="/signup" component={Signup} />       
+        {getToken? 
+         <>  <Route exact path="/home" component={Home} />
+        <Route  path="/aboutus" component={AboutUs} />   
+        <Route  path="/contact" component={Contact} /></> :
+        <Login/>}   
+
         </Switch>
       </BrowserRouter>
     
